@@ -1,0 +1,22 @@
+{
+  "name": "cd-cli-generator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "lib/index.js",
+  "scripts": {
+    "dev": "ts-node src/index.ts",
+    "build": "tsc -p ."
+  },
+  "bin": {
+    "cdgen": "lib/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "prompts": "^2.4.1"
+  },
+  "devDependencies": {
+    "@types/prompts": "^2.0.10"
+  }
+}
