@@ -167,7 +167,12 @@ class ProjectBuilder {
 
     const [name, category] = await Prompter.getCommandData();
 
-    const commandTemplate = getCommandTemplate(language, name, category);
+    const commandTemplate = getCommandTemplate(
+      json_config.handler,
+      language,
+      name,
+      category,
+    );
 
     const path = join(root, "src", json_config.commands, category);
 
