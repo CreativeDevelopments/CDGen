@@ -40,7 +40,7 @@ export class PackageHandler {
   }
 
   private initYARN(): void {
-    execSync(`cd ${this.file_path} && yarn init`);
+    execSync(`cd ${this.file_path} && yarn init -y`);
     execSync(`cd ${this.file_path} && yarn add discord.js`);
     execSync(`cd ${this.file_path} && yarn add dotenv`);
     execSync(`cd ${this.file_path} && yarn add ${this.handler_choice}`);
