@@ -134,7 +134,11 @@ class ProjectBuilder {
     const language = json_config.language;
 
     const event = await Prompter.getEventType();
-    const event_template = getEventTemplate(language, event);
+    const event_template = getEventTemplate(
+      language,
+      json_config.handler,
+      event,
+    );
 
     const path = join(root, "src", json_config.events);
 
