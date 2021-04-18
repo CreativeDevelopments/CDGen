@@ -32,7 +32,7 @@ client.on("ready", () => {
     eventsDir: "{events}",
     featuresDir: "{features}",
     defaultPrefix: "{prefix}",
-    mongoURI: process.env.MONGO_URI,
+    mongoURI: process.env.MONGO_URI as string,
   });
 
   console.log(\`\${client.user?.tag} has logged in!\`);

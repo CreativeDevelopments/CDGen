@@ -6,6 +6,7 @@ import { join } from "path";
 import ProjectBuilder from "./Project/ProjectBuilder";
 import Prompter from "./Utils/Prompter";
 import { jsonType } from "./Types/json.type";
+import chalk from "chalk";
 
 async function main() {
   const args = process.argv.slice(2);
@@ -27,9 +28,22 @@ async function handleArgumentsProvided(choice: option, type: generated) {
     const lang = await Prompter.getLanguage();
     ProjectBuilder.buildProject(type, lang);
   } else {
-    const lang = (<jsonType>await import(join(process.cwd(), "CDConfig.json")))
-      .language;
-    await ProjectBuilder.genStructure(type, lang);
+    try {
+      const lang = (<jsonType>(
+        await import(join(process.cwd(), "CDConfig.json"))
+      )).language;
+      await ProjectBuilder.genStructure(type, lang);
+    } catch (err) {
+      console.log(
+        chalk.bold(
+          `Folder at path "${chalk.red(
+            process.cwd(),
+          )}" is not a valid cdgen project. Use "${chalk.green(
+            "cdgen new",
+          )}" or "${chalk.green("cdgen")}"`,
+        ),
+      );
+    }
   }
 }
 

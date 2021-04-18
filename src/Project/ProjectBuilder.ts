@@ -52,9 +52,9 @@ class ProjectBuilder {
               `. Use "cd ${proj_name}" to enter your root directory\n`,
           ),
           chalk.bold(
-            `Use ${chalk.cyanBright(
+            ` Use ${chalk.cyanBright(
               "cdgen gen",
-            )} to generate a new event, command, or event`,
+            )} to generate a new event, command, or feature!`,
           ),
         ),
     );
@@ -132,6 +132,7 @@ class ProjectBuilder {
   }
 
   private static async genCommand(language: language) {}
+
   private static async genFeature(language: language) {
     const root = process.cwd();
     const json_config: jsonType = await import(join(root, "CDConfig.json"));

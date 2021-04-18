@@ -64,7 +64,11 @@ class Prompter {
 
   static async getPaths(): Promise<[string, string, string]> {
     const { commands, events, features } = await prompts(paths);
-    return [commands ?? "commands", events ?? "events", features ?? "features"];
+    return [
+      commands.length > 0 ? commands : "commands",
+      events.length > 0 ? events : "events",
+      features.length > 0 ? features : "features",
+    ];
   }
 
   static async getFeatureName(): Promise<string> {
