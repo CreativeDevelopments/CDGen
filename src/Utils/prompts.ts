@@ -48,3 +48,81 @@ export const questions: Array<PromptObject> = [
     ],
   },
 ];
+
+export const get_prefix: PromptObject = {
+  name: "prefix",
+  type: "text",
+  message: "What do you want your bots prefix to be?",
+  validate: (v: string) => (v.length === 0 ? "Prefix may not be empty!" : true),
+};
+
+export const token_uri: PromptObject[] = [
+  {
+    name: "token",
+    type: "text",
+    message: "What is your bot token?",
+    validate: (v: string) =>
+      v.length === 0 ? "Token may not be empty!" : true,
+  },
+  {
+    name: "uri",
+    type: "text",
+    message: "What is your mongoose uri?",
+    validate: (v: string) =>
+      v.length === 0 ? "Token may not be empty!" : true,
+  },
+];
+
+export const handler: PromptObject = {
+  name: "handler",
+  type: "select",
+  message: "What command/event handler would you like to use?",
+  choices: [
+    {
+      title: "CDCommands",
+      value: "cdcommands",
+      description: "Select CDCommands for your command/event handler.",
+    },
+    {
+      title: "CDHandler",
+      value: "cdhandler",
+      description: "Select CDHandler for your command/event handler.",
+    },
+  ],
+};
+
+export const package_handler: PromptObject = {
+  name: "package",
+  type: "select",
+  message: "What package manager do you use?",
+  choices: [
+    {
+      title: "NPM",
+      value: "npm",
+      description: "Select NPM for your package manager",
+    },
+    {
+      title: "Yarn",
+      value: "yarn",
+      description: "Select Yarn for your package manager",
+    },
+  ],
+};
+
+export const language: PromptObject = {
+  name: "choice",
+  type: "select",
+  message: "What language do you use?",
+  choices: [
+    {
+      title: "JavaScript",
+      value: "js",
+      description: "Select JavaScript",
+    },
+    {
+      title: "TypeScript",
+      value: "ts",
+      description: "Select TypeScript",
+    },
+  ],
+};

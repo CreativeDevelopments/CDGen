@@ -12,15 +12,17 @@ async function main() {
     if (args.length < 2) throw new Error("Invalid Argument Size.");
 
     const [choice, type] = <getDataReturnValue>args.splice(2);
-    handleArgumentsProvided(choice, type);
+    await handleArgumentsProvided(choice, type);
   } else {
     const answer = await Prompter.getData();
-    handleArgumentsProvided(...answer);
+    await handleArgumentsProvided(...answer);
   }
 }
 
-function handleArgumentsProvided(choice: option, type: generated) {
-  if (choice === "new") ProjectBuilder.buildProject();
+async function handleArgumentsProvided(choice: option, type: generated) {
+  const lang = await Prompter.getLanguage();
+
+  if (choice === "new") ProjectBuilder.buildProject(type, lang);
   else {
   }
 }
