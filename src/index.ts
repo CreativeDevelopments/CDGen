@@ -27,24 +27,7 @@ async function handleArgumentsProvided(choice: option, type: generated) {
   if (choice === "new") {
     const lang = await Prompter.getLanguage();
     ProjectBuilder.buildProject(type, lang);
-  } else {
-    try {
-      const lang = (<jsonType>(
-        await import(join(process.cwd(), "CDConfig.json"))
-      )).language;
-      await ProjectBuilder.genStructure(type, lang);
-    } catch (err) {
-      console.log(
-        chalk.bold(
-          `Folder at path "${chalk.red(
-            process.cwd(),
-          )}" is not a valid cdgen project. Use "${chalk.green(
-            "cdgen new",
-          )}" or "${chalk.green("cdgen")}"`,
-        ),
-      );
-    }
-  }
+  } else await ProjectBuilder.genStructure(type);
 }
 
 main();

@@ -60,7 +60,7 @@ class ProjectBuilder {
     );
   }
 
-  static async genStructure(structure: generated, language: language) {
+  static async genStructure(structure: generated) {
     const config_file = join(process.cwd(), "CDConfig.json");
     try {
       require(config_file);
@@ -69,13 +69,13 @@ class ProjectBuilder {
     }
     switch (structure) {
       case "command":
-        await this.genCommand(language);
+        await this.genCommand();
         break;
       case "event":
-        await this.genEvent(language);
+        await this.genEvent();
         break;
       case "feature":
-        await this.genFeature(language);
+        await this.genFeature();
         break;
     }
   }
@@ -107,10 +107,11 @@ class ProjectBuilder {
     writeFileSync(join(root, "CDConfig.json"), getCDConfig(language, ...args));
   }
 
-  private static async genEvent(language: language) {
+  private static async genEvent() {
     const root = process.cwd();
 
     const json_config: jsonType = await import(join(root, "CDConfig.json"));
+    const language = json_config.language;
 
     const event = await Prompter.getEventType();
     const event_template = getEventTemplate(language, event);
@@ -131,11 +132,16 @@ class ProjectBuilder {
     );
   }
 
-  private static async genCommand(language: language) {}
-
-  private static async genFeature(language: language) {
+  private static async genCommand() {
     const root = process.cwd();
     const json_config: jsonType = await import(join(root, "CDConfig.json"));
+    const language = json_config.language;
+  }
+
+  private static async genFeature() {
+    const root = process.cwd();
+    const json_config: jsonType = await import(join(root, "CDConfig.json"));
+    const language = json_config.language;
 
     const feature_name = await Prompter.getFeatureName();
     const feature_template = getFeatureTemplate(language);
