@@ -15,6 +15,7 @@ import {
 } from "../Utils/templates";
 import prompts from "prompts";
 import { jsonType } from "../Types/json.type";
+import { handlerChoice } from "../Types/handlerChoice.type";
 
 class ProjectBuilder {
   static async buildProject(proj_name: string, language: language) {
@@ -34,9 +35,24 @@ class ProjectBuilder {
 
     console.log(chalk.bold("Generating main project..."));
 
-    this.genCDConfig(language, root_path, commands, events, features);
+    this.genCDConfig(
+      language,
+      root_path,
+      handler_choice,
+      commands,
+      events,
+      features,
+    );
     await this.genEnv(root_path, ...env);
-    await this.genMain(language, root_path, prefix, commands, events, features);
+    await this.genMain(
+      language,
+      root_path,
+      handler_choice,
+      prefix,
+      commands,
+      events,
+      features,
+    );
 
     mkdirSync(join(root_path, "src", commands));
     mkdirSync(join(root_path, "src", events));
@@ -82,10 +98,11 @@ class ProjectBuilder {
   private static async genMain(
     language: language,
     root: string,
+    handler: handlerChoice,
     prefix: string,
     ...paths: [string, string, string]
   ) {
-    const template = getMainTemplate(language, prefix, ...paths);
+    const template = getMainTemplate(language, prefix, handler, ...paths);
     const src = join(root, "src");
     mkdirSync(src);
     writeFileSync(
@@ -101,9 +118,13 @@ class ProjectBuilder {
   private static async genCDConfig(
     language: "js" | "ts",
     root: string,
+    handler: handlerChoice,
     ...args: [string, string, string]
   ) {
-    writeFileSync(join(root, "CDConfig.json"), getCDConfig(language, ...args));
+    writeFileSync(
+      join(root, "CDConfig.json"),
+      getCDConfig(language, handler, ...args),
+    );
   }
 
   private static async genEvent() {
@@ -172,7 +193,7 @@ class ProjectBuilder {
     const language = json_config.language;
 
     const feature_name = await Prompter.getFeatureName();
-    const feature_template = getFeatureTemplate(language);
+    const feature_template = getFeatureTemplate(language, json_config.handler);
 
     const path = join(
       root,
