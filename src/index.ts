@@ -2,28 +2,34 @@
 import { generated } from "./Types/generated.type";
 import { getDataReturnValue } from "./Types/getData.return.type";
 import { option } from "./Types/option.type";
+import { join } from "path";
 import ProjectBuilder from "./Project/ProjectBuilder";
 import Prompter from "./Utils/Prompter";
+import { jsonType } from "./Types/json.type";
 
 async function main() {
   const args = process.argv.slice(2);
 
   if (args.length > 0) {
-    if (args.length < 2) throw new Error("Invalid Argument Size.");
-
-    const [choice, type] = <getDataReturnValue>args.splice(2);
-    await handleArgumentsProvided(choice, type);
+    const [choice, type] = <getDataReturnValue>args;
+    if (choice === "new") {
+      const type = <generated>await Prompter.getData(true);
+      await handleArgumentsProvided("new", type);
+    } else await handleArgumentsProvided(choice, type);
   } else {
-    const answer = await Prompter.getData();
+    const answer = <getDataReturnValue>await Prompter.getData(false);
     await handleArgumentsProvided(...answer);
   }
 }
 
 async function handleArgumentsProvided(choice: option, type: generated) {
-  const lang = await Prompter.getLanguage();
-
-  if (choice === "new") ProjectBuilder.buildProject(type, lang);
-  else {
+  if (choice === "new") {
+    const lang = await Prompter.getLanguage();
+    ProjectBuilder.buildProject(type, lang);
+  } else {
+    const lang = (<jsonType>await import(join(process.cwd(), "CDConfig.json")))
+      .language;
+    ProjectBuilder.genStructure(type, lang);
   }
 }
 

@@ -2,20 +2,20 @@ import { generated } from "../Types/generated.type";
 import { language } from "../Types/lanuage";
 import { PackageHandler } from "../Utils/HandlePackages";
 import Prompter from "../Utils/Prompter";
-import { mkdirSync, writeFileSync } from "fs";
+import { mkdirSync, writeFileSync, existsSync } from "fs";
 import { join } from "path";
 import chalk from "chalk";
 import {
-  EventJS,
   CommandJS,
-  FeatureJS,
   getMainTemplate,
   getEnvTemplate,
-  FeatureTS,
+  getEventTemplate,
+  getFeatureTemplate,
   CommandTS,
-  EventTS,
+  getCDConfig,
 } from "../Utils/templates";
 import prompts from "prompts";
+import { jsonType } from "../Types/json.type";
 
 class ProjectBuilder {
   static async buildProject(proj_name: string, language: language) {
@@ -31,15 +31,17 @@ class ProjectBuilder {
 
     const env = await Prompter.getTokenAndURI();
     const prefix = await Prompter.getPrefix();
+    const [commands, events, features] = await Prompter.getPaths();
 
     console.log(chalk.bold("Generating main project..."));
 
+    this.genCDConfig(language, root_path, commands, events, features);
     await this.genEnv(root_path, ...env);
-    await this.genMain(language, root_path, prefix);
+    await this.genMain(language, root_path, prefix, commands, events, features);
 
-    mkdirSync(join(root_path, "src", "commands"));
-    mkdirSync(join(root_path, "src", "events"));
-    mkdirSync(join(root_path, "src", "features"));
+    mkdirSync(join(root_path, "src", commands));
+    mkdirSync(join(root_path, "src", events));
+    mkdirSync(join(root_path, "src", features));
 
     console.log(
       chalk.green("√") +
@@ -47,13 +49,24 @@ class ProjectBuilder {
           chalk.bold(
             ` Successfully created new project ` +
               chalk.green(`"${proj_name}"`) +
-              `. Use "cd ${proj_name}"`,
+              `. Use "cd ${proj_name}" to enter your root directory\n`,
+          ),
+          chalk.bold(
+            `Use ${chalk.cyanBright(
+              "cdgen gen",
+            )} to generate a new event, command, or event`,
           ),
         ),
     );
   }
 
   static genStructure(structure: generated, language: language) {
+    const config_file = join(process.cwd(), "CDConfig.json");
+    try {
+      require(config_file);
+    } catch (err) {
+      throw new Error("The current directory is not a valid cdgen project.");
+    }
     switch (structure) {
       case "command":
         this.genCommand(language);
@@ -71,8 +84,9 @@ class ProjectBuilder {
     language: language,
     root: string,
     prefix: string,
+    ...paths: [string, string, string]
   ) {
-    const template = getMainTemplate(language, prefix);
+    const template = getMainTemplate(language, prefix, ...paths);
     const src = join(root, "src");
     mkdirSync(src);
     writeFileSync(
@@ -85,7 +99,29 @@ class ProjectBuilder {
     writeFileSync(join(root, ".env"), getEnvTemplate(token, uri));
   }
 
-  private static genEvent(language: language) {}
+  private static async genCDConfig(
+    language: "js" | "ts",
+    root: string,
+    ...args: [string, string, string]
+  ) {
+    writeFileSync(join(root, "CDConfig.json"), getCDConfig(language, ...args));
+  }
+
+  private static async genEvent(language: language) {
+    const root = process.cwd();
+
+    const json_config: jsonType = await import(join(root, "CDConfig.json"));
+
+    const event = await Prompter.getEventType();
+    const event_template = getEventTemplate(language, event);
+
+    const path = join(root, "src", json_config.events);
+
+    if (existsSync(join(path, `${event}.${language}`)))
+      throw new Error(`Event "${event}" already exists.`);
+    else writeFileSync(join(path, `${event}.${language}`), event_template);
+  }
+
   private static genCommand(language: language) {}
   private static genFeature(language: language) {}
 }

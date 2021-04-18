@@ -1,22 +1,34 @@
+import { ClientEvents } from "discord.js";
 import prompts from "prompts";
+import { generated } from "../Types/generated.type";
 import { getDataReturnValue } from "../Types/getData.return.type";
 import { handlerChoice } from "../Types/handlerChoice.type";
 import { language } from "../Types/lanuage";
 import { packageHandlerType } from "../Types/package.handler.type";
 import { tokenUri } from "../Types/tokenUri.type";
 import {
+  event_type,
   get_prefix,
   handler,
   language as lang,
   package_handler,
+  paths,
+  question,
   questions,
   token_uri,
 } from "./prompts";
 
 class Prompter {
-  static async getData(): Promise<getDataReturnValue> {
-    const { option, data } = await prompts(questions);
-    return [option, data];
+  static async getData(
+    short: boolean,
+  ): Promise<getDataReturnValue | generated> {
+    if (short) {
+      const { data } = await prompts(question);
+      return data;
+    } else {
+      const { option, data } = await prompts(questions);
+      return [option, data];
+    }
   }
 
   static async getLanguage(): Promise<language> {
@@ -42,6 +54,16 @@ class Prompter {
   static async getPrefix(): Promise<string> {
     const { prefix } = await prompts(get_prefix);
     return prefix;
+  }
+
+  static async getEventType(): Promise<keyof ClientEvents> {
+    const { event } = await prompts(event_type);
+    return event;
+  }
+
+  static async getPaths(): Promise<[string, string, string]> {
+    const { commands, events, features } = await prompts(paths);
+    return [commands, events, features];
   }
 }
 

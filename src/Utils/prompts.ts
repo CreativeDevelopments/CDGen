@@ -1,4 +1,13 @@
 import { PromptObject } from "prompts";
+import { events_params } from "./Events.Params";
+
+export const question: PromptObject = {
+  type: "text",
+  name: "data",
+  message: "What would you like to call your project?",
+  validate: (v: string) =>
+    v.length === 0 ? "Your project name can't be empty!" : true,
+};
 
 export const questions: Array<PromptObject> = [
   {
@@ -48,6 +57,41 @@ export const questions: Array<PromptObject> = [
     ],
   },
 ];
+
+export const paths: PromptObject[] = [
+  {
+    name: "commands",
+    type: "text",
+    message: "Where do you want your commands stored?",
+    validate: (v: string) =>
+      v.length === 0 ? "Commands path may not be empty!" : true,
+  },
+  {
+    name: "events",
+    type: "text",
+    message: "Where do you want your events stored?",
+    validate: (v: string) =>
+      v.length === 0 ? "Events path may not be empty!" : true,
+  },
+  {
+    name: "features",
+    type: "text",
+    message: "Where do you want your features stored?",
+    validate: (v: string) =>
+      v.length === 0 ? "Features path may not be empty!" : true,
+  },
+];
+
+export const event_type: PromptObject = {
+  name: "event",
+  type: "select",
+  message: "What event would you like to generate?",
+  choices: Object.keys(events_params).map((event) => ({
+    value: event,
+    title: event.toUpperCase(),
+    description: `Select the ${event} event.`,
+  })),
+};
 
 export const get_prefix: PromptObject = {
   name: "prefix",

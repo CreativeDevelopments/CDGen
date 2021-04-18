@@ -35,7 +35,6 @@ export class PackageHandler {
     execSync(`cd ${this.file_path} && npm i ${this.handler_choice}`);
     if (this.langauge === "ts") {
       execSync(`cd ${this.file_path} && npm i @types/node --save-dev`);
-      execSync(`cd ${this.file_path} && npm i @types/dotenv --save-dev`);
       execSync(`cd ${this.file_path} && tsc -init`);
     }
   }
@@ -47,7 +46,6 @@ export class PackageHandler {
     execSync(`cd ${this.file_path} && yarn add ${this.handler_choice}`);
     if (this.langauge === "ts") {
       execSync(`cd ${this.file_path} && yarn add @types/node --dev`);
-      execSync(`cd ${this.file_path} && yarn add @types/dotenv --dev`);
       execSync(`cd ${this.file_path} && tsc -init`);
     }
   }
