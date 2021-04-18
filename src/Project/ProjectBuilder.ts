@@ -6,12 +6,11 @@ import { mkdirSync, writeFileSync, existsSync } from "fs";
 import { join } from "path";
 import chalk from "chalk";
 import {
-  CommandJS,
   getMainTemplate,
   getEnvTemplate,
+  getCommandTemplate,
   getEventTemplate,
   getFeatureTemplate,
-  CommandTS,
   getCDConfig,
 } from "../Utils/templates";
 import prompts from "prompts";
@@ -118,9 +117,13 @@ class ProjectBuilder {
 
     const path = join(root, "src", json_config.events);
 
-    if (existsSync(join(path, `${event}.${language}`)))
-      throw new Error(`Event "${event}" already exists.`);
-    else writeFileSync(join(path, `${event}.${language}`), event_template);
+    if (existsSync(join(path, `${event}.${language}`))) {
+      const overwrite = await Prompter.overWriteWarning();
+      if (!overwrite)
+        return console.log(chalk.bold(chalk.red(`Canceled Operation.`)));
+    }
+
+    writeFileSync(join(path, `${event}.${language}`), event_template);
 
     console.log(
       chalk.bold(
@@ -136,6 +139,31 @@ class ProjectBuilder {
     const root = process.cwd();
     const json_config: jsonType = await import(join(root, "CDConfig.json"));
     const language = json_config.language;
+
+    const [name, category] = await Prompter.getCommandData();
+
+    const commandTemplate = getCommandTemplate(language, name, category);
+
+    const path = join(root, "src", json_config.commands, category);
+
+    if (!existsSync(path)) mkdirSync(path);
+
+    if (existsSync(join(path, `${name}.${language}`))) {
+      const overwrite = await Prompter.overWriteWarning();
+      if (!overwrite)
+        return console.log(chalk.bold(chalk.red(`Canceled Operation.`)));
+    }
+
+    writeFileSync(join(path, `${name}.${language}`), commandTemplate);
+
+    console.log(
+      chalk.bold(
+        `Successfully generated command "${name}" at path ${join(
+          path,
+          `${name}.${language}`,
+        )}`,
+      ),
+    );
   }
 
   private static async genFeature() {
@@ -153,9 +181,13 @@ class ProjectBuilder {
       `${feature_name}.${language}`,
     );
 
-    if (existsSync(path))
-      throw new Error(`A feature with name "${feature_name}" already exists.`);
-    else writeFileSync(path, feature_template);
+    if (existsSync(path)) {
+      const overwrite = await Prompter.overWriteWarning();
+      if (!overwrite)
+        return console.log(chalk.bold(chalk.red(`Canceled Operation.`)));
+    }
+
+    writeFileSync(path, feature_template);
 
     console.log(
       chalk.bold(

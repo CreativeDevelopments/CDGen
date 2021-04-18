@@ -9,6 +9,29 @@ export const question: PromptObject = {
     v.length === 0 ? "Your project name can't be empty!" : true,
 };
 
+export const type_only: PromptObject = {
+  type: "select",
+  name: "type",
+  message: "What would you like to create?",
+  choices: [
+    {
+      title: "Event",
+      value: "event",
+      description: "Generate an Event.",
+    },
+    {
+      title: "Feature",
+      value: "feature",
+      description: "Generate a Feature.",
+    },
+    {
+      title: "Command",
+      value: "command",
+      description: "Generate a Command.",
+    },
+  ],
+};
+
 export const questions: Array<PromptObject> = [
   {
     name: "option",
@@ -58,6 +81,23 @@ export const questions: Array<PromptObject> = [
   },
 ];
 
+export const command_data: PromptObject[] = [
+  {
+    name: "name",
+    type: "text",
+    message: "What is this commands name?",
+    validate: (v: string) =>
+      v.length === 0 ? "Command name may not be empty!" : true,
+  },
+  {
+    name: "category",
+    type: "text",
+    message: "What category is this command in?",
+    validate: (v: string) =>
+      v.length === 0 ? "Category name may not be empty!" : true,
+  },
+];
+
 export const feature_name: PromptObject = {
   name: "feature",
   type: "text",
@@ -70,23 +110,17 @@ export const paths: PromptObject[] = [
   {
     name: "commands",
     type: "text",
-    message: "Where do you want your commands stored?",
-    // validate: (v: string) =>
-    //   v.length === 0 ? "Commands path may not be empty!" : true,
+    message: 'Where do you want your commands stored? - Default is "commands".',
   },
   {
     name: "events",
     type: "text",
-    message: "Where do you want your events stored?",
-    // validate: (v: string) =>
-    //   v.length === 0 ? "Events path may not be empty!" : true,
+    message: 'Where do you want your events stored? - Default is "events".',
   },
   {
     name: "features",
     type: "text",
-    message: "Where do you want your features stored?",
-    // validate: (v: string) =>
-    //   v.length === 0 ? "Features path may not be empty!" : true,
+    message: 'Where do you want your features stored? - Default is "features".',
   },
 ];
 
@@ -175,6 +209,25 @@ export const language: PromptObject = {
       title: "TypeScript",
       value: "ts",
       description: "Select TypeScript",
+    },
+  ],
+};
+
+export const overwrite_warning: PromptObject = {
+  name: "overwrite",
+  type: "select",
+  message:
+    "The file you wish to create already exists. Do you wish to overwrite it?",
+  choices: [
+    {
+      title: "Yes",
+      value: true,
+      description: "Overwrite target file.",
+    },
+    {
+      title: "No",
+      value: false,
+      description: "Cancel operation.",
     },
   ],
 };

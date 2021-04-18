@@ -2,11 +2,8 @@
 import { generated } from "./Types/generated.type";
 import { getDataReturnValue } from "./Types/getData.return.type";
 import { option } from "./Types/option.type";
-import { join } from "path";
 import ProjectBuilder from "./Project/ProjectBuilder";
 import Prompter from "./Utils/Prompter";
-import { jsonType } from "./Types/json.type";
-import chalk from "chalk";
 
 async function main() {
   const args = process.argv.slice(2);
@@ -24,6 +21,9 @@ async function main() {
 }
 
 async function handleArgumentsProvided(choice: option, type: generated) {
+  if (!type && choice && choice === "gen")
+    type = (await Prompter.getGenType()) as generated;
+
   if (choice === "new") {
     const lang = await Prompter.getLanguage();
     ProjectBuilder.buildProject(type, lang);

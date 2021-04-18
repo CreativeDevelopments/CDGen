@@ -7,16 +7,19 @@ import { language } from "../Types/lanuage";
 import { packageHandlerType } from "../Types/package.handler.type";
 import { tokenUri } from "../Types/tokenUri.type";
 import {
+  command_data,
   event_type,
   feature_name,
   get_prefix,
   handler,
   language as lang,
+  overwrite_warning,
   package_handler,
   paths,
   question,
   questions,
   token_uri,
+  type_only,
 } from "./prompts";
 
 class Prompter {
@@ -30,6 +33,11 @@ class Prompter {
       const { option, data } = await prompts(questions);
       return [option, data];
     }
+  }
+
+  static async getGenType(): Promise<string> {
+    const { type } = await prompts(type_only);
+    return type;
   }
 
   static async getLanguage(): Promise<language> {
@@ -74,6 +82,16 @@ class Prompter {
   static async getFeatureName(): Promise<string> {
     const { feature } = await prompts(feature_name);
     return feature;
+  }
+
+  static async getCommandData(): Promise<[string, string]> {
+    const { name, category } = await prompts(command_data);
+    return [name, category];
+  }
+
+  static async overWriteWarning(): Promise<boolean> {
+    const { overwrite } = await prompts(overwrite_warning);
+    return overwrite;
   }
 }
 
