@@ -60,7 +60,7 @@ class ProjectBuilder {
     );
   }
 
-  static genStructure(structure: generated, language: language) {
+  static async genStructure(structure: generated, language: language) {
     const config_file = join(process.cwd(), "CDConfig.json");
     try {
       require(config_file);
@@ -69,13 +69,13 @@ class ProjectBuilder {
     }
     switch (structure) {
       case "command":
-        this.genCommand(language);
+        await this.genCommand(language);
         break;
       case "event":
-        this.genEvent(language);
+        await this.genEvent(language);
         break;
       case "feature":
-        this.genFeature(language);
+        await this.genFeature(language);
         break;
     }
   }
@@ -120,10 +120,42 @@ class ProjectBuilder {
     if (existsSync(join(path, `${event}.${language}`)))
       throw new Error(`Event "${event}" already exists.`);
     else writeFileSync(join(path, `${event}.${language}`), event_template);
+
+    console.log(
+      chalk.bold(
+        `Successfully generated event "${event}" at path "${join(
+          path,
+          `${event}.${language}`,
+        )}".`,
+      ),
+    );
   }
 
-  private static genCommand(language: language) {}
-  private static genFeature(language: language) {}
+  private static async genCommand(language: language) {}
+  private static async genFeature(language: language) {
+    const root = process.cwd();
+    const json_config: jsonType = await import(join(root, "CDConfig.json"));
+
+    const feature_name = await Prompter.getFeatureName();
+    const feature_template = getFeatureTemplate(language);
+
+    const path = join(
+      root,
+      "src",
+      json_config.features,
+      `${feature_name}.${language}`,
+    );
+
+    if (existsSync(path))
+      throw new Error(`A feature with name "${feature_name}" already exists.`);
+    else writeFileSync(path, feature_template);
+
+    console.log(
+      chalk.bold(
+        `Successfully generated feature "${feature_name}" at path "${path}"`,
+      ),
+    );
+  }
 }
 
 export default ProjectBuilder;

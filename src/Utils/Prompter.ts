@@ -8,6 +8,7 @@ import { packageHandlerType } from "../Types/package.handler.type";
 import { tokenUri } from "../Types/tokenUri.type";
 import {
   event_type,
+  feature_name,
   get_prefix,
   handler,
   language as lang,
@@ -63,7 +64,12 @@ class Prompter {
 
   static async getPaths(): Promise<[string, string, string]> {
     const { commands, events, features } = await prompts(paths);
-    return [commands, events, features];
+    return [commands ?? "commands", events ?? "events", features ?? "features"];
+  }
+
+  static async getFeatureName(): Promise<string> {
+    const { feature } = await prompts(feature_name);
+    return feature;
   }
 }
 

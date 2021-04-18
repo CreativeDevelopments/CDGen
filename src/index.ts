@@ -29,7 +29,7 @@ async function handleArgumentsProvided(choice: option, type: generated) {
   } else {
     const lang = (<jsonType>await import(join(process.cwd(), "CDConfig.json")))
       .language;
-    ProjectBuilder.genStructure(type, lang);
+    await ProjectBuilder.genStructure(type, lang);
   }
 }
 

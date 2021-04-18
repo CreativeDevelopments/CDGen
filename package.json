@@ -5,7 +5,8 @@
   "main": "lib/index.js",
   "scripts": {
     "dev": "ts-node src/index.ts",
-    "build": "tsc -p ."
+    "build": "tsc -p .",
+    "bind": "npm link"
   },
   "bin": {
     "cdgen": "lib/index.js"

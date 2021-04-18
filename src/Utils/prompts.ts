@@ -58,27 +58,35 @@ export const questions: Array<PromptObject> = [
   },
 ];
 
+export const feature_name: PromptObject = {
+  name: "feature",
+  type: "text",
+  message: "What would you like to name your feature file?",
+  validate: (v: string) =>
+    v.length === 0 ? "Feature name may not be empty!" : true,
+};
+
 export const paths: PromptObject[] = [
   {
     name: "commands",
     type: "text",
     message: "Where do you want your commands stored?",
-    validate: (v: string) =>
-      v.length === 0 ? "Commands path may not be empty!" : true,
+    // validate: (v: string) =>
+    //   v.length === 0 ? "Commands path may not be empty!" : true,
   },
   {
     name: "events",
     type: "text",
     message: "Where do you want your events stored?",
-    validate: (v: string) =>
-      v.length === 0 ? "Events path may not be empty!" : true,
+    // validate: (v: string) =>
+    //   v.length === 0 ? "Events path may not be empty!" : true,
   },
   {
     name: "features",
     type: "text",
     message: "Where do you want your features stored?",
-    validate: (v: string) =>
-      v.length === 0 ? "Features path may not be empty!" : true,
+    // validate: (v: string) =>
+    //   v.length === 0 ? "Features path may not be empty!" : true,
   },
 ];
 
