@@ -1,1 +1,1 @@
-export type option = "new" | "gen";
+export type option = "create" | "gen";

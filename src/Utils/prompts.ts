@@ -39,9 +39,9 @@ export const questions: Array<PromptObject> = [
     type: "select",
     choices: [
       {
-        title: "New",
+        title: "Create",
         description: "Create a new Discord Bot Project",
-        value: "new",
+        value: "create",
       },
       {
         title: "Generate",

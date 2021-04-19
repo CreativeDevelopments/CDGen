@@ -10,9 +10,10 @@ async function main() {
 
   if (args.length > 0) {
     const [choice, type] = <getDataReturnValue>args;
-    if (choice === "new") {
+    //@ts-ignore
+    if (choice === "create" || choice === "new") {
       const type = <generated>await Prompter.getData(true);
-      await handleArgumentsProvided("new", type);
+      await handleArgumentsProvided("create", type);
     } else await handleArgumentsProvided(choice, type);
   } else {
     const answer = <getDataReturnValue>await Prompter.getData(false);
@@ -24,7 +25,7 @@ async function handleArgumentsProvided(choice: option, type: generated) {
   if (!type && choice && choice === "gen")
     type = (await Prompter.getGenType()) as generated;
 
-  if (choice === "new") {
+  if (choice === "create") {
     const lang = await Prompter.getLanguage();
     ProjectBuilder.buildProject(type, lang);
   } else await ProjectBuilder.genStructure(type);
