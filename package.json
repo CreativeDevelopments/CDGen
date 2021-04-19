@@ -1,7 +1,7 @@
 {
-  "name": "cd-cli-generator",
+  "name": "cdgen",
   "version": "1.0.0",
-  "description": "",
+  "description": "A similar project to [slappey](https://www.npmjs.com/package/slappey), but used specifically with either CDCommands or CDHandler.",
   "main": "lib/index.js",
   "scripts": {
     "dev": "ts-node src/index.ts",
@@ -11,8 +11,14 @@
   "bin": {
     "cdgen": "lib/index.js"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "Discord Bot",
+    "discord.js",
+    "scaffolder",
+    "generator",
+    "bot generator"
+  ],
+  "author": "Maxisthemoose",
   "license": "ISC",
   "dependencies": {
     "chalk": "^4.1.0",
