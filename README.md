@@ -1,8 +1,8 @@
-[![](https://img.shields.io/discord/769710808435261490.svg?style=for-the-badge)](https://discord.gg/jUNbV5u)
-[![](https://img.shields.io/npm/dt/cdgen.svg?style=for-the-badge)](https://www.npmjs.com/package/cdgen)
-[![](https://img.shields.io/npm/dm/cdgen.svg?style=for-the-badge&color=blue)](https://www.npmjs.com/package/cdgen)
-[![](https://img.shields.io/npm/v/cdgen.svg?style=for-the-badge&color=blue)](https://www.npmjs.com/package/cdgen)
-[![](https://img.shields.io/badge/license-Apache%202-blue.svg?style=for-the-badge)](https://github.com/CreativeDevelopments/CDGen)
+[![](https://img.shields.io/discord/769710808435261490.svg?style=flat-square)](https://discord.gg/jUNbV5u)
+[![](https://img.shields.io/npm/dt/cdgen.svg?style=flat-square)](https://www.npmjs.com/package/cdgen)
+[![](https://img.shields.io/npm/dm/cdgen.svg?style=flat-square&color=blue)](https://www.npmjs.com/package/cdgen)
+[![](https://img.shields.io/npm/v/cdgen.svg?style=flat-square&color=blue)](https://www.npmjs.com/package/cdgen)
+[![](https://img.shields.io/badge/license-Apache%202-blue.svg?style=flat-square)](https://github.com/CreativeDevelopments/CDGen)
 
 <br>
 
