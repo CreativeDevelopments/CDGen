@@ -19,7 +19,7 @@
     "bot generator"
   ],
   "author": "Maxisthemoose",
-  "license": "ISC",
+  "license": "Apache-2.0",
   "dependencies": {
     "chalk": "^4.1.0",
     "prompts": "^2.4.1"
