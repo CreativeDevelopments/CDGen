@@ -11,7 +11,7 @@
 - [About](#about)
 - [Tutorials](#tutorials)
 - [Installation](#installation)
-- [Getting Started](#getting_started)
+- [Getting Started](#getting-started)
   - [CDCommands](#cdcommands)
   - [CDHandler](#cdhandler)
 - [Other](#other)
