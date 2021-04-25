@@ -8,6 +8,10 @@
     "build": "tsc -p .",
     "bind": "npm link"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/CreativeDevelopments/CDGen"
+  },
   "bin": {
     "cdgen": "lib/index.js"
   },
@@ -18,8 +22,16 @@
     "generator",
     "bot generator"
   ],
-  "author": "Maxisthemoose",
-  "license": "ISC",
+  "author": "CreativeDevelopments (Maxisthemoose)",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/CreativeDevelopments/CDGen/issues"
+  },
+  "homepage": "https://docs.creativedevelopments.org/cdgen",
+  "funding": {
+    "type": "patreon",
+    "url": "https://patreon.com/_CreativeDevelopments"
+  },
   "dependencies": {
     "chalk": "^4.1.0",
     "prompts": "^2.4.1"
