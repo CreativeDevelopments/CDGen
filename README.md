@@ -6,37 +6,21 @@
 
 <br>
 
-# Table of Contents
+# We have now moved this over to our new [Guide](https://docs.creativedevelopments.org/CDGen)
 
-- [About](#about)
-- [Tutorials](#tutorials)
-- [Installation](#installation)
-- [Getting Started](#getting-started)
-  - [CDCommands](#cdcommands)
-  - [CDHandler](#cdhandler)
-- [Other](#other)
+## Contents of the Guide
 
-# About
+- [Changelog](https://docs.creativedevelopments.org/CDGen/changelog)
+- [Contribute](https://docs.creativedevelopments.org/CDGen/contribute)
+- [Issues and Feature Requests](https://docs.creativedevelopments.org/CDGen/issues-and-feature-requests)
+- [Installation](https://docs.creativedevelopments.org/CDGen/installation)
+- [Getting Started](https://docs.creativedevelopments.org/CDGen/getting-started)
+  - [Generating a Project](https://docs.creativedevelopments.org/CDGen/getting-started/generating-a-project)
+- [Generating a Command](https://docs.creativedevelopments.org/CDGen/generating-a-command)
+- [Generating an Event](https://docs.creativedevelopments.org/CDGen/generating-an-event)
+- [Generating a Feature](https://docs.creativedevelopments.org/CDGen/generating-a-feature)
 
-CDGen is a package similar to [slappey](https://www.npmjs.com/package/slappey). It is a project generator for CDCommands and CDHandler.  
-Using CDGen you can start your project and then create commands, events and features for your project.
+## Other
 
-# Tutorials
-
-Here are some video tutorials using CDGen:
-
-- [CDCommands - Coming Soon](https://www.youtube.com/watch?v=dQw4w9WgXcQ)
-- [CDHandler - Coming Soon](https://www.youtube.com/watch?v=dQw4w9WgXcQ)
-
-# Installation
-
-```
-npm install cdgen --global
-```
-
-# Getting Started
-
-Once you have installed the package you can then start generating projects.
-
-- To create a project type `cdgen` in your console and it will come up with two options.  
-  Ok I've realised I don't have time to finish this right now, I'll do it Sunday.
+If you need any help please join our [Support Server](https://discord.com/invite/jUNbV5u).  
+You can find everything you need on our [Guide](https://docs.creativedevelopments.org/CDGen).
