@@ -14,6 +14,7 @@ client.on("ready", () => {
     featuresDir: "{features}",
     defaultPrefix: "{prefix}",
     mongoURI: process.env.MONGO_URI,
+    ignoreBots: true,
   });
   
   console.log(\`\${client.user.tag} has logged in!\`);
@@ -54,6 +55,7 @@ client.on("ready", () => {
     featuresDir: "{features}",
     defaultPrefix: "{prefix}",
     mongoURI: process.env.MONGO_URI as string,
+    ignoreBots: true,
   });
 
   console.log(\`\${client.user?.tag} has logged in!\`);

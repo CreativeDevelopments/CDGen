@@ -6,19 +6,20 @@
 
 <br>
 
-# We have now moved this over to our new [Guide](https://docs.creativedevelopments.org/CDGen)
+# We have now moved this over to our new [Guide](https://docs.creativedevelopments.org/cdgen)
 
 ## Contents of the Guide
 
-- [Changelog](https://docs.creativedevelopments.org/CDGen/changelog)
-- [Contribute](https://docs.creativedevelopments.org/CDGen/contribute)
-- [Issues and Feature Requests](https://docs.creativedevelopments.org/CDGen/issues-and-feature-requests)
-- [Installation](https://docs.creativedevelopments.org/CDGen/installation)
-- [Getting Started](https://docs.creativedevelopments.org/CDGen/getting-started)
-  - [Generating a Project](https://docs.creativedevelopments.org/CDGen/getting-started/generating-a-project)
-- [Generating a Command](https://docs.creativedevelopments.org/CDGen/generating-a-command)
-- [Generating an Event](https://docs.creativedevelopments.org/CDGen/generating-an-event)
-- [Generating a Feature](https://docs.creativedevelopments.org/CDGen/generating-a-feature)
+- [Home Page](https://docs.creativedevelopments.org/cdgen)
+- [Changelog](https://docs.creativedevelopments.org/cdgen/development/changelog)
+- [Contribute](https://docs.creativedevelopments.org/cdgen/development/contribute)
+- [Issues and Feature Requests](https://docs.creativedevelopments.org/cdgen/development/issues-and-feature-requests)
+- [Installation](https://docs.creativedevelopments.org/cdgen/using-cdgen/installation)
+- [Getting Started](https://docs.creativedevelopments.org/cdgen/using-cdgen/getting-started)
+  - [Generating a Project](https://docs.creativedevelopments.org/cdgen/using-cdgen/getting-started/generating-a-project)
+- [Generating a Command](https://docs.creativedevelopments.org/cdgen/using-cdgen/generating-a-command)
+- [Generating an Event](https://docs.creativedevelopments.org/cdgen/using-cdgen/generating-an-event)
+- [Generating a Feature](https://docs.creativedevelopments.org/cdgen/using-cdgen/generating-a-feature)
 
 ## Other
 
