@@ -1,4 +1,4 @@
-# If you would like to contribute to CDGen. Please follow the steps below:
+# If you would like to contribute to CDGen, please follow the steps below:
 
 1. Fork our Repository, you can do that [here](https://github.com/CreativeDevelopments/CDGen)
 2. Make your changes
