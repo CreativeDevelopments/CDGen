@@ -51,7 +51,7 @@ export const questions: Array<PromptObject> = [
     ],
   },
   {
-    type: (previous: string) => (previous === "new" ? "text" : null),
+    type: (previous: string) => (previous === "create" ? "text" : null),
     name: "data",
     message: "What would you like to call your project?",
     validate: (v: string) =>
