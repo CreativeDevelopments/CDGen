@@ -1,6 +1,6 @@
 {
   "name": "cdgen",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A similar project to [slappey](https://www.npmjs.com/package/slappey), but used specifically with either CDCommands or CDHandler.",
   "main": "lib/index.js",
   "scripts": {
